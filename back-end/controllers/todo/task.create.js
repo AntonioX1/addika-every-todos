@@ -1,30 +1,30 @@
 /**
  * 
- * Clase TodoCreate
+ * Clase TaskCreate
  * 
  * @author  	Antonio Cortés <antonio.cortes.1901@gmail.com>
- * @exports 	TodoCreate
+ * @exports 	TaskCreate
  * @version 	1.0.0
  * 
 */
-class TodoCreate {
+class TaskCreate {
 
 	/**
 	 * 
-	 * Constructor de la clase TodoCreate
+	 * Constructor de la clase TaskCreate
 	 * 
 	 * @param 	request 		{Request Express} 	Información de la petición generada por express
-	 * @param 	todoModel 	{TodoModel} 				Instancia de la clase TodoModel
+	 * @param 	taskModel 	{TaskModel} 				Instancia de la clase TaskModel
 	 * 
 	 * @author  Antonio Cortés <antonio.cortes.1901@gmail.com>
 	 * @constructor
 	 * 
 	*/
-	constructor(request, todoModel) {
+	constructor(request, taskModel) {
 
 		this.request = 		request;
 
-		this.todoModel = 	todoModel;
+		this.taskModel = 	taskModel;
 
 	}
 
@@ -38,21 +38,21 @@ class TodoCreate {
 	 * 
 	 * @author  Antonio Cortés <antonio.cortes.1901@gmail.com>
 	 * @async
-	 * @returns TodoModel
+	 * @returns taskModel
 	 * 
 	*/
 	async execute() {
 
-		this.todoModel._name = 				this.request.body.name;
+		this.taskModel._title = 				this.request.body.title;
 
-		this.todoModel._title = 			this.request.body.title;
+		this.taskModel._description = 	this.request.body.description;
 
-		this.todoModel._completed = 	(this.request.body.completed) ? this.request.body.completed : false;
+		this.taskModel._completed = 		(this.request.body.completed) ? this.request.body.completed : false;
 
-		return await this.todoModel.create(this.request.sequelize_connection.model('todos'));
+		return await this.taskModel.create(this.request.sequelize_connection.model('tasks'));
 		
 	}
 
 }
 
-module.exports = TodoCreate;
+module.exports = TaskCreate;

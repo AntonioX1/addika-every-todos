@@ -3,25 +3,37 @@
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     
-    await queryInterface.bulkInsert('todos', [{
-      name: 'Name Task #1',
-      title: 'Title Task #1',
-      completed: false
+    await queryInterface.bulkInsert('tasks', [{
+      title: 'Design Screen',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque perspiciatis quaerat dolores tenetur iste similique optio quas, ducimus vitae laboriosam nam obcaecati suscipit sapiente voluptatibus doloribus quae explicabo quidem dignissimos?',
+      completed: false,
+      created_at: new Date(),
+      updated_at: new Date()
     }, {
-      name: 'Name Task #2',
-      title: 'Title Task #2',
-      completed: false
+      title: 'Buy Coffee',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque perspiciatis quaerat dolores tenetur iste similique optio quas, ducimus vitae laboriosam nam obcaecati suscipit sapiente voluptatibus doloribus quae explicabo quidem dignissimos?',
+      completed: false,
+      created_at: new Date(),
+      updated_at: new Date()
     }, {
-      name: 'Name Task #3',
-      title: 'Title Task #3',
-      completed: false
+      title: 'Design Screen',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque perspiciatis quaerat dolores tenetur iste similique optio quas, ducimus vitae laboriosam nam obcaecati suscipit sapiente voluptatibus doloribus quae explicabo quidem dignissimos?',
+      completed: false,
+      created_at: new Date(),
+      updated_at: new Date()
+    }, {
+      title: 'Buy Coffee',
+      description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque perspiciatis quaerat dolores tenetur iste similique optio quas, ducimus vitae laboriosam nam obcaecati suscipit sapiente voluptatibus doloribus quae explicabo quidem dignissimos?',
+      completed: false,
+      created_at: new Date(),
+      updated_at: new Date()
     }]);
 
   },
 
   down: async (queryInterface, Sequelize) => {
     
-    await queryInterface.bulkDelete('todos', null, {});
+    await queryInterface.bulkDelete('tasks', null, {});
     
   }
 };

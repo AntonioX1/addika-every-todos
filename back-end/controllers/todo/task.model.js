@@ -2,16 +2,16 @@ const ModelExtension = require('../../model_extension');
 
 /**
  * 
- * Clase TodoModel
+ * Clase TaskModel
  *
  * @requires 	ModelExtension
  * @extends 	ModelExtension
- * @exports 	TodoModel
+ * @exports 	TaskModel
  * @author 		Marco Antonio González Cortés <antonio.cortes.1901@gmail.com>
  * @version 	1.0.0
  *
 */
-class TodoModel extends ModelExtension {
+class TaskModel extends ModelExtension {
 
 	/**
 	 * 
@@ -28,13 +28,13 @@ class TodoModel extends ModelExtension {
 
 		super();
 
-		this.id = 				0;
+		this.id = 					0;
 
-		this.name = 			'';
+		this.title = 				'';
 
-		this.title = 			'';
+		this.description = 	'';
 
-		this.completed = 	false;
+		this.completed = 		false;
 		
 	}
 
@@ -65,31 +65,6 @@ class TodoModel extends ModelExtension {
 
 	/**
 	 * 
-	 * Setter de la propiedad name
-	 *
-	 * Se comprueban los argumentos recibidos, de no cumplirse se lanza una excepción,
-	 * si todo esta bien se asigna el valor de name
-	 * 
-	 * @param 	value 	{String} 	Valor a asignar
-	 *
-	 * @author 	Marco Antonio González Cortés <antonio.cortes.1901@gmail.com>
-	 * @returns Void
-	 *
-	*/
-	set _name(value) {
-
-		if(typeof value !== 'string') 	throw new ReferenceError(`El nombre debe de ser de tipo string`);
-
-		if(value.trim().length === 0) 	throw new ReferenceError(`El nombre no contiene algún valor`);
-
-		if(value.length >= 100) 				throw new ReferenceError(`El nombre supera la cantidad de caracteres permitido`);
-
-		this.name = value;
-
-	}
-
-	/**
-	 * 
 	 * Setter de la propiedad title
 	 *
 	 * Se comprueban los argumentos recibidos, de no cumplirse se lanza una excepción,
@@ -111,6 +86,29 @@ class TodoModel extends ModelExtension {
 
 		this.title = value;
 		
+	}
+
+	/**
+	 * 
+	 * Setter de la propiedad description
+	 *
+	 * Se comprueban los argumentos recibidos, de no cumplirse se lanza una excepción,
+	 * si todo esta bien se asigna el valor de description
+	 * 
+	 * @param 	value 	{String} 	Valor a asignar
+	 *
+	 * @author 	Marco Antonio González Cortés <antonio.cortes.1901@gmail.com>
+	 * @returns Void
+	 *
+	*/
+	set _description(value) {
+
+		if(typeof value !== 'string') 	throw new ReferenceError(`La descripción debe de ser de tipo string`);
+
+		if(value.trim().length === 0) 	throw new ReferenceError(`La descripción no contiene algún valor`);
+
+		this.description = value;
+
 	}
 
 	/**
@@ -139,15 +137,15 @@ class TodoModel extends ModelExtension {
 	 * Crea una propia instancia de la clase
 	 *
 	 * @author 	Marco Antonio González Cortés <antonio.cortes.1901@gmail.com>
-	 * @returns TodoModel
+	 * @returns TaskModel
 	 *
 	*/
 	_clone() {
 
-		return new TodoModel();
+		return new TaskModel();
 
 	}
 
 }
 
-module.exports = TodoModel;
+module.exports = TaskModel;

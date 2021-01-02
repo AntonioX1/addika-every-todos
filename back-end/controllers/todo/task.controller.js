@@ -1,22 +1,22 @@
 const
-	TodoModel = 	require('./todo.model'),
-	TodoCreate = 	require('./todo.create'),
-	TodoUpdate = 	require('./todo.update'),
-	TodoDelete = 	require('./todo.delete'),
-	TodoPatch = 	require('./todo.patch')
+	TaskModel = 	require('./task.model'),
+	TaskCreate = 	require('./task.create'),
+	TaskUpdate = 	require('./task.update'),
+	TaskDelete = 	require('./task.delete'),
+	TaskPatch = 	require('./task.patch')
 ;
 
 /**
  * 
- * Clase TodoController
+ * Clase TaskController
  *
- * @requires 	TodoModel,TodoCreate,TodoUpdate,TodoDelete,TodoPatch
- * @exports 	TodoController
+ * @requires 	TaskModel,TaskCreate,TaskUpdate,TaskDelete,TaskPatch
+ * @exports 	TaskController
  * @author 		Marco Antonio González Cortés <antonio.cortes.1901@gmail.com>
  * @version 	1.0.0
  *
 */
-class TodoController {
+class TaskController {
 
 	/**
 	 * 
@@ -31,7 +31,7 @@ class TodoController {
 	*/
 	constructor() {
 
-		this._model = new TodoModel();
+		this._model = new TaskModel();
 
 	}
 
@@ -39,7 +39,7 @@ class TodoController {
 	 * 
 	 * Crea un nuevo registro
 	 *
-	 * Se hace uso de la clase "TodoCreate" para registrar la información
+	 * Se hace uso de la clase "TaskCreate" para registrar la información
 	 * Se define una estructura de bloques try, catch, finally 
 	 * para controlar el tipo de respuesta y capturar cualquier posible error
 	 * 
@@ -55,16 +55,16 @@ class TodoController {
 
 		try {
 
-			let todo = await new TodoCreate(request, this._model).execute();
+			let task = await new TaskCreate(request, this._model).execute();
 
 
 			request.api_response.status = 	true;
 
 			request.api_response.code = 		request.api_response.getCode(request.method);
 
-			request.api_response.message = 	'Todo created';
+			request.api_response.message = 	'Task created';
 
-			request.api_response.data = 		{ todo: todo };
+			request.api_response.data = 		{ task: task };
 
 		} catch(error) {
 
@@ -90,7 +90,7 @@ class TodoController {
 	 * 
 	 * Obtiene toda la información de una tabla de la base de datos
 	 *
-	 * Se hace uso del modelo "TodoModel" para obtener la información requerida
+	 * Se hace uso del modelo "TaskModel" para obtener la información requerida
 	 * Se define una estructura de bloques try, catch, finally 
 	 * para controlar el tipo de respuesta y capturar cualquier posible error
 	 * 
@@ -106,17 +106,17 @@ class TodoController {
 
 		try {
 
-			let todos = 	await this._model.readAll(request.sequelize_connection.model('todos'));
+			let tasks = 	await this._model.readAll(request.sequelize_connection.model('tasks'));
 
-			if(todos.length !== 0) {
+			if(tasks.length !== 0) {
 
 				request.api_response.status = 	true;
 
 				request.api_response.code = 		request.api_response.getCode(request.method);
 
-				request.api_response.message = 	'Todos gets';
+				request.api_response.message = 	'Tasks gets';
 
-				request.api_response.data = 		{ todos: todos };
+				request.api_response.data = 		{ tasks: tasks };
 
 			} else {
 
@@ -124,7 +124,7 @@ class TodoController {
 
 				request.api_response.code = 		200;
 
-				request.api_response.message = 	'Todos not found';
+				request.api_response.message = 	'Tasks not found';
 
 				request.api_response.data = 		{ };
 
@@ -154,7 +154,7 @@ class TodoController {
 	 * 
 	 * Obtiene información en concreta de una tabla de la base de datos
 	 *
-	 * Se hace uso del modelo "TodoModel" para obtener la información requerida
+	 * Se hace uso del modelo "TaskModel" para obtener la información requerida
 	 * Se define una estructura de bloques try, catch, finally 
 	 * para controlar el tipo de respuesta y capturar cualquier posible error
 	 * 
@@ -170,17 +170,17 @@ class TodoController {
 
 		try {
 
-			let todo = 	await this._model.readById(request.params.id, request.sequelize_connection.model('todos'));
+			let task = 	await this._model.readById(request.params.id, request.sequelize_connection.model('tasks'));
 
-			if(Object.keys(todo).length !== 0) {
+			if(Object.keys(task).length !== 0) {
 
 				request.api_response.status = 	true;
 
 				request.api_response.code = 		request.api_response.getCode(request.method);
 
-				request.api_response.message = 	'Todo get';
+				request.api_response.message = 	'Task get';
 
-				request.api_response.data = 		{ todo: todo };
+				request.api_response.data = 		{ task: task };
 
 			} else {
 
@@ -188,7 +188,7 @@ class TodoController {
 
 				request.api_response.code = 		404;
 
-				request.api_response.message = 	'Todo not found';
+				request.api_response.message = 	'Task not found';
 
 				request.api_response.data = 		{ };
 
@@ -218,7 +218,7 @@ class TodoController {
 	 * 
 	 * Actualiza la información de un registro en concreto
 	 *
-	 * Se hace uso del modelo "TodoUpdate" para actualizar la información requerida
+	 * Se hace uso del modelo "TaskUpdate" para actualizar la información requerida
 	 * Se define una estructura de bloques try, catch, finally 
 	 * para controlar el tipo de respuesta y capturar cualquier posible error
 	 * 
@@ -234,16 +234,16 @@ class TodoController {
 
 		try {
 
-			let todo = 	await new TodoUpdate(request, this._model).execute();
+			let task = 	await new TaskUpdate(request, this._model).execute();
 
 
 			request.api_response.status = 	true;
 
 			request.api_response.code = 		request.api_response.getCode(request.method);
 
-			request.api_response.message = 	'Todo updated';
+			request.api_response.message = 	'Task updated';
 
-			request.api_response.data = 		{ todo: todo };
+			request.api_response.data = 		{ task: task };
 
 		} catch(error) {
 
@@ -269,7 +269,7 @@ class TodoController {
 	 * 
 	 * Actualiza solo una partte de unaa información de un registro en concreto
 	 *
-	 * Se hace uso del modelo "TodoPatch" para actualizar la información requerida
+	 * Se hace uso del modelo "TaskPatch" para actualizar la información requerida
 	 * Se define una estructura de bloques try, catch, finally 
 	 * para controlar el tipo de respuesta y capturar cualquier posible error
 	 * 
@@ -285,18 +285,18 @@ class TodoController {
 
 		try {
 
-			let todo = await new TodoPatch(request, this._model).execute();
+			let task = await new TaskPatch(request, this._model).execute();
 
 			
-			if(Object.keys(todo).length !== 0) {
+			if(Object.keys(task).length !== 0) {
 
 				request.api_response.status = 	true;
 
 				request.api_response.code = 		200;
 
-				request.api_response.message = 	'Todo updated';
+				request.api_response.message = 	'Task updated';
 
-				request.api_response.data = 		{ todo: todo };
+				request.api_response.data = 		{ task: task };
 
 			} else {
 
@@ -304,7 +304,7 @@ class TodoController {
 
 				request.api_response.code = 		404;
 
-				request.api_response.message = 	'Todo not found';
+				request.api_response.message = 	'Task not found';
 
 				request.api_response.data = 		{ };
 
@@ -334,7 +334,7 @@ class TodoController {
 	 * 
 	 * Elimina un registro en concreto
 	 *
-	 * Se hace uso del modelo "TodoDelete" para eliminar el registro
+	 * Se hace uso del modelo "TaskDelete" para eliminar el registro
 	 * Se define una estructura de bloques try, catch, finally 
 	 * para controlar el tipo de respuesta y capturar cualquier posible error
 	 * 
@@ -350,16 +350,16 @@ class TodoController {
 
 		try {
 
-			let todo = await new TodoDelete(request, this._model).execute();
+			let task = await new TaskDelete(request, this._model).execute();
 
 			
 			request.api_response.status = 	true;
 
 			request.api_response.code = 		request.api_response.getCode(request.method);
 
-			request.api_response.message = 	'Todo deleted';
+			request.api_response.message = 	'Task deleted';
 
-			request.api_response.data = 		todo.id;
+			request.api_response.data = 		task.id;
 
 		} catch(error) {
 
@@ -383,4 +383,4 @@ class TodoController {
 
 }
 
-module.exports = TodoController;
+module.exports = TaskController;

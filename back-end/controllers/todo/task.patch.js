@@ -1,30 +1,30 @@
 /**
  * 
- * Clase TodoPatch
+ * Clase TaskPatch
  * 
  * @author  	Antonio Cortés <antonio.cortes.1901@gmail.com>
- * @exports 	TodoPatch
+ * @exports 	TaskPatch
  * @version 	1.0.0
  * 
 */
-class TodoPatch {
+class TaskPatch {
 
 	/**
 	 * 
-	 * Constructor de la clase TodoPatch
+	 * Constructor de la clase TaskPatch
 	 * 
 	 * @param 	request 		{Request Express} 	Información de la petición generada por express
-	 * @param 	todoModel 	{TodoModel} 				Instancia de la clase TodoModel
+	 * @param 	taskModel 	{TaskModel} 				Instancia de la clase TaskModel
 	 * 
 	 * @author  Antonio Cortés <antonio.cortes.1901@gmail.com>
 	 * @constructor
 	 * 
 	*/
-	constructor(request, todoModel) {
+	constructor(request, taskModel) {
 
 		this.request = 		request;
 
-		this.todoModel = 	todoModel;
+		this.taskModel = 	taskModel;
 
 	}
 
@@ -38,26 +38,26 @@ class TodoPatch {
 	 * 
 	 * @author  Antonio Cortés <antonio.cortes.1901@gmail.com>
 	 * @async
-	 * @returns TodoModel
+	 * @returns taskModel
 	 * 
 	*/
 	async execute() {
 
-		let sequelizeModel = 					this.request.sequelize_connection.model('todos');
+		let sequelizeModel = 					this.request.sequelize_connection.model('tasks');
 
-		this.todoModel = 							this.todoModel.patch(this.request.body);
+		this.taskModel = 							this.taskModel.patch(this.request.body);
 
-		this.todoModel._id = 					Number(this.request.params.id);
+		this.taskModel._id = 					Number(this.request.params.id);
 
 		
-		let response = 								await this.todoModel.update(sequelizeModel);
+		let response = 								await this.taskModel.update(sequelizeModel);
 
-		if(!response) 								throw new ReferenceError('Todo not found');
+		if(!response) 								throw new ReferenceError('Task not found');
 
-		return await this.todoModel.readById(this.todoModel.id, sequelizeModel);
+		return await this.taskModel.readById(this.taskModel.id, sequelizeModel);
 		
 	}
 
 }
 
-module.exports = TodoPatch;
+module.exports = TaskPatch;
