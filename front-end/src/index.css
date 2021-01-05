@@ -17,5 +17,222 @@ code {
   width: 100%;
 }
 .form__msg--error {
-  color: red;
+  color: #A90F30;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+/*///////////////////////
+// Input
+///////////////////////*/
+.input {
+  border: 1px solid #C7CAD1;
+  color: #717787;
+}
+.input:hover {
+  border-color: #393F57;
+}
+.input:focus-within {
+  border-color: #3C5CBF;
+}
+.input:focus {
+  border-color: #3C5CBF;
+  box-shadow: none;
+  color: #1F243F;
+  outline: none;
+  outline-width: 0px;
+}
+
+/*///////////////////////
+// Modal
+///////////////////////*/
+.modal {
+	background: #ffffff54;
+}
+
+/*///////////////////////
+// Task Modal Detail
+///////////////////////*/
+.task_modal__dialog--detail {
+  height: 100%;
+  position: fixed;
+  margin-top: 0px;
+  right: 0;
+  width: 26.5rem;
+}
+.task_modal__content--detail {
+  height: 100%;
+  padding: 22px 36px 2rem 36px !important;
+}
+.task_modal__header--detail {
+  border-bottom: none !important;
+}
+.task_modal__title--detail {
+  font-size: 29px;
+  margin-top: 5rem;
+}
+.task_modal__header .close {
+  font-size: 2rem;
+}
+
+.task_modal__footer--detail {
+  padding: 0px;
+  border-top: none;
+}
+
+.modal-content {
+	border-color: #8b8b8b;
+	box-shadow: -3px 0px 6px #8b8b8b;
+	padding: 22px 45px 2rem 45px;
+}
+.modal-body {
+	padding: 1.5rem 0px 0px 0px;
+}
+
+/*///////////////////////
+// Task
+///////////////////////*/
+.task__container {
+  background: #F4F5F7;
+  padding: 2rem 3rem 0px 3rem;
+}
+.task__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+/*///////////////////////
+// Header
+///////////////////////*/
+.header {
+  background: #FFFFFF;
+  border-bottom: 3px solid #CACDD3;
+  padding: 12px 18px 6px 18px;
+}
+.header__title {
+  font-size: 20px;
+  padding-top: 0.5rem;
+}
+.header__separator {
+  display: inline-block;
+  margin: 0px 1rem 0px 1rem;
+}
+.header__separator::after {
+  content: ' ';
+  background: #E3E4E8;
+  display: block;
+  height: 25px;
+  position: relative;
+  top: 7px;
+  width: 1px;
+}
+
+/*///////////////////////
+// Button
+///////////////////////*/
+.button__container {
+  margin: 2rem 0rem 0rem 0rem;
+  width: 100%;
+}
+.button {
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+  color: #212529;
+  cursor: pointer;
+}
+.button:hover {
+  background: #F4F5F7;
+  color: #212529;
+}
+.button:focus, .button:active {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  color: #212529;
+}
+.button__icon {
+  font-size: 13px;
+  margin-right: 12px;
+}
+.button__icon--primary {
+  color: #3C5CBF;;
+}
+
+.button__title {
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+/*///////////////////////
+// Secondary Button
+///////////////////////*/
+.button--secondary {
+  background: #E4E5E9;
+  display: inline-block;
+  font-weight: 600;
+  margin-right: 1rem;
+  padding: 8px 30px 8px 27px;
+}
+.button--secondary:hover {
+  background: #E4E5E9;
+}
+
+/*///////////////////////
+// Button Cancel
+///////////////////////*/
+.button--cancel {
+  background: #E4E5E9;
+  display: inline-block;
+  font-weight: 600;
+  margin-right: 1rem;
+  padding: 8px 35px 8px 35px;
+}
+.button--cancel:hover {
+  background: #E4E5E9;
+}
+
+/*///////////////////////
+// Button Submit
+///////////////////////*/
+.button--submit {
+  background: #3C5CBF;
+  color: #FFF;
+  display: inline-block;
+  font-weight: 400;
+  padding: 8px 35px 8px 35px;
+}
+.button--submit:hover {
+  background: #3C5CBF;
+  color: #FFF;
+}
+
+.button--submit:disabled {
+  background: #3c5cbfbf;
+  cursor: no-drop;
+}
+
+/*///////////////////////
+// Icons
+///////////////////////*/
+.icon__container {
+  display: inline-block;
+  padding: 0px 5px 0px 5px;
+  margin: 0px 5px 0px 0px;
+}
+.icon--primary {
+  color: #3C5CBF;
+}
+.icon--secondary {
+  color: #8E949F;
+  font-size: 20px;
+}
+/*///////////////////////
+// Task Form Group
+///////////////////////*/
+.task__form_group {
+  margin-bottom: 1.7rem;
 }
