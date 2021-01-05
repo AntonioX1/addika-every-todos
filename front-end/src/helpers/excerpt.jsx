@@ -1,0 +1,1 @@
+export const excerpt = (text, totalLength) => Number(text.length) > Number(totalLength) ? `${ text.substring(0, totalLength) }...` : text;

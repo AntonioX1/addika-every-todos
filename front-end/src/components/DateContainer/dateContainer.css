@@ -1,0 +1,46 @@
+/*!
+ * dateContainer.css
+ * Versión - 1.0.0
+ * Author - Marco Antonio González Cortés <antonio.cortes.1901@gmail.com>
+ *
+*/
+.date_container {
+    background: #FFFFFF;
+    border: 1px solid #C7CAD1;
+    border-radius: 5px;
+    display: inline-block;
+    padding: 0px 15px 0px 0px;
+    position: relative;
+}
+.date_container:hover {
+    border-color: #393F57;
+}
+.date_container:focus-within {
+    border-color: #3C5CBF;
+}
+.date_container:focus-within .date_container__icon {
+    color: #3C5CBF;
+}
+.date_container__icon {
+    color: #787E8D;
+}
+.date_container__helper {
+    position: absolute;
+}
+.date_container__helper--right {
+    right: .8rem;
+    top: 0.4rem;
+}
+.date_container__input {
+    color: #717787;
+    border: transparent;
+    box-shadow: none;
+    padding-right: 20px;
+}
+.date_container__input:focus {
+    border: transparent;
+    box-shadow: none;
+    color: #1F243F;
+    outline: none;
+    outline-width: 0px;
+}

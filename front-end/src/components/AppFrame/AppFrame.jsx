@@ -2,12 +2,16 @@ import React 			from 'react'
 import PropTypes 	from 'prop-types'
 import AppHeader 	from '../AppHeader'
 
-const AppFrame = ({ header, body }) => {
+const AppFrame = ({ header, body, handleModal }) => {
 
 	return (
-		<div>
+		<div className="task__container">
+			<h1 className="task__title"> My Tasks </h1>
 			<div className="app-frame">
-				<AppHeader title={ header }></AppHeader>
+				<AppHeader
+					handleModal={ handleModal }
+					title={ header }
+				/>
 				<div>{ body }</div>
 			</div>
 		</div>
@@ -16,8 +20,9 @@ const AppFrame = ({ header, body }) => {
 }
 
 AppFrame.propTypes = {
-	header: PropTypes.string.isRequired,
-	body:		PropTypes.element.isRequired
+	header: 			PropTypes.string.isRequired,
+	body:					PropTypes.element.isRequired,
+	handleModal: 	PropTypes.func.isRequired
 }
 
 export default AppFrame

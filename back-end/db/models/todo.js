@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class todo extends Model {
+  class task extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  todo.init({
+  task.init({
     id: {
       type:           DataTypes.INTEGER,
       autoIncrement: 	true,
@@ -21,15 +21,14 @@ module.exports = (sequelize, DataTypes) => {
       unique:         true,
       allowNull:      false,
     },
-    name: {
-      type:           DataTypes.STRING(100),
-      allowNull:      false,
-      validate:       { min: 1, max: 100 }
-    },
     title: {
       type:           DataTypes.STRING(100),
       allowNull:      false,
       validate:       { min: 1, max: 200 }
+    },
+    description: {
+      type:           DataTypes.TEXT,
+      allowNull:      false
     },
     completed: {
       type:           DataTypes.BOOLEAN,
@@ -38,8 +37,10 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName:    'todos',
-    timestamps:   false
+    modelName:    'tasks',
+    timestamps:   true,
+    createdAt:    'created_at',
+    updatedAt:    'updated_at'
   });
-  return todo;
+  return task;
 };

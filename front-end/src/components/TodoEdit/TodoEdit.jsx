@@ -44,7 +44,30 @@ class TodoEdit extends Component {
 		const { handleSubmit, submitting, pristine, submitSucceeded } = this.props;
 
 		return (
-			<Container maxWidth="sm">
+			<div></div>
+			
+		)
+
+	}
+
+}
+
+TodoEdit.propTypes = {
+	id: 							PropTypes.number,
+	name: 						PropTypes.string,
+	title: 						PropTypes.string,
+	completed: 				PropTypes.bool,
+	handleSubmit: 		PropTypes.func,
+	submitting: 			PropTypes.bool,
+	pristine: 				PropTypes.bool,
+	submitSucceeded: 	PropTypes.bool
+}
+
+const TodoEditForm = reduxForm({ form: 'TodoEdit', validate })(TodoEdit)
+
+export default setPropsAsInitial(TodoEditForm)
+/*
+<Container maxWidth="sm">
 				<Box my={2}>
 					<Card variant="outlined">
 							
@@ -81,23 +104,4 @@ class TodoEdit extends Component {
 					</Card>
 				</Box>
 				</Container>
-		)
-
-	}
-
-}
-
-TodoEdit.propTypes = {
-	id: 							PropTypes.number,
-	name: 						PropTypes.string,
-	title: 						PropTypes.string,
-	completed: 				PropTypes.bool,
-	handleSubmit: 		PropTypes.func,
-	submitting: 			PropTypes.bool,
-	pristine: 				PropTypes.bool,
-	submitSucceeded: 	PropTypes.bool
-}
-
-const TodoEditForm = reduxForm({ form: 'TodoEdit', validate })(TodoEdit)
-
-export default setPropsAsInitial(TodoEditForm)
+*/

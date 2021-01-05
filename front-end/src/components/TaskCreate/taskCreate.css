@@ -1,0 +1,14 @@
+/*!
+ * taskCreate.css
+ * Versión - 1.0.0
+ * Author - Marco Antonio González Cortés <antonio.cortes.1901@gmail.com>
+ *
+*/
+.task_modal__header {
+	border-bottom: 2px solid rgb(205 208 214);
+	padding: 0px;
+	padding-bottom: .8rem;
+}
+.task_modal__title {
+	font-weight: 700;
+}

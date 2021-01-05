@@ -1,9 +1,9 @@
-export const FETCH_TODOS = 	'FETCH_TODOS';
+export const FETCH_TASKS = 	'FETCH_TASKS';
 
-export const UPDATE_TODO = 	'UPDATE_TODO';
+export const UPDATE_TASK = 	'UPDATE_TASK';
 
-export const INSERT_TODO = 	'INSERT_TODO';
+export const INSERT_TASK = 	'INSERT_TASK';
 
-export const DELETE_TODO = 	'DELETE_TODO';
+export const DELETE_TASK = 	'DELETE_TASK';
 
-export const PATCH_TODO = 	'PATCH_TODO';
+export const PATCH_TASK = 	'PATCH_TASK';
