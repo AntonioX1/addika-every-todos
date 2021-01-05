@@ -10,6 +10,7 @@ import TaskDetail 						from '../../components/TaskDetail'
 import { fetchTasks } 				from '../../redux/actions/fetchTasks'
 import { GetTasks } 					from '../../redux/reducers/selectors/tasks.selector'
 import { insertTask } 				from '../../redux/actions/insertTask'
+import { updateTask } 				from '../../redux/actions/updateTask'
 
 class TaskListContainer extends Component {
 
@@ -36,7 +37,25 @@ class TaskListContainer extends Component {
 
 	}
 
-	handleSubmit = values => {
+	handleTaskCreateModal = () => {
+
+		this.setState({ showTaskCreateModal: !this.state.showTaskCreateModal })
+
+	}
+
+	handleTaskDetailModal = (task) => {
+
+		this.setState({ showTaskDetailModal: !this.state.showTaskDetailModal, task })
+
+	}
+
+	handleTaskUpdateModal = () => {
+
+		this.setState({ showTaskUpdateModal: !this.state.showTaskUpdateModal, showTaskDetailModal: false})
+
+	}
+
+	handleTaskCreate = values => {
 
 		let response = {};
 
@@ -56,28 +75,38 @@ class TaskListContainer extends Component {
 
 	}
 
-	onHandleSuccess = () => {
+	handleTaskCreateSuccess = () => {
 
 		this.handleTaskCreateModal()
 
 	}
 
-	handleTaskCreateModal = () => {
+	handleTaskUpdate = (values) => {
 
-		this.setState({ showTaskCreateModal: !this.state.showTaskCreateModal })
+		let response = {};
+
+		try {
+
+			const { id } = values;
+
+			response =  this.props.updateTodo(id, values);
+
+		} catch(error) {
+
+			throw Error(error);
+
+		} finally {
+
+			return response;
+
+		}
 
 	}
 
-	handleTaskDetailModal = (task) => {
+	handleTaskUpdateSuccess = () => {
 
-		this.setState({ showTaskDetailModal: !this.state.showTaskDetailModal, task })
-
-	}
-
-	handleTaskUpdateModal = () => {
-
-		this.setState({ showTaskUpdateModal: !this.state.showTaskUpdateModal, showTaskDetailModal: false })
-
+		this.setState({ showTaskUpdateModal: !this.state.showTaskUpdateModal })
+		
 	}
 
 	renderBody() {
@@ -103,13 +132,15 @@ class TaskListContainer extends Component {
 				<TaskCreate
 					showTaskCreateModal={ this.state.showTaskCreateModal }
 					handleTaskCreateModal={ this.handleTaskCreateModal }
-					onSubmit={ this.handleSubmit }
-					onSubmitSuccess={ this.onHandleSuccess }
+					onSubmit={ this.handleTaskCreate }
+					onSubmitSuccess={ this.handleTaskCreateSuccess }
 				/>
 				<TaskUpdate
 					showTaskUpdateModal={ this.state.showTaskUpdateModal }
 					handleTaskUpdateModal={ this.handleTaskUpdateModal }
-					task={ this.state.task }
+					{ ...this.state.task }
+					onSubmit={ this.handleTaskUpdate }
+					onSubmitSuccess={ this.handleTaskUpdateSuccess }
 				/>
 				<TaskDetail
 					showTaskDetailModal={ this.state.showTaskDetailModal }
@@ -126,6 +157,7 @@ class TaskListContainer extends Component {
 
 TaskListContainer.propTypes = {
 	insertTask: 	PropTypes.func.isRequired,
+	updateTask: 	PropTypes.func.isRequired,
 	fetchTasks: 	PropTypes.func.isRequired,
 	tasks: 				PropTypes.array.isRequired
 }
@@ -136,4 +168,4 @@ TaskListContainer.defaultProps = {
 
 const mapStateToProps = state => ({ tasks: GetTasks(state) })
 
-export default connect(mapStateToProps, { insertTask, fetchTasks })(TaskListContainer)
+export default connect(mapStateToProps, { insertTask, updateTask, fetchTasks })(TaskListContainer)

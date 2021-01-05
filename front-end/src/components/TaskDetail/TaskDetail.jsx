@@ -84,13 +84,13 @@ class TaskDetail extends Component {
 							<p> { task.description } </p>
 						</Form.Group>
 						<Form.Group className="task__form_group">
-							<p> Updated Today, 02:35 pm, <br /> by Peter Smith </p>
+							<p> Updated { moment(task.created_at).startOf('hour').fromNow() }, { moment(task.created_at).format('LT') } <br /> by Peter Smith </p>
 						</Form.Group>
 					</Form>
 				</Modal.Body>
 				<Modal.Footer className="task_modal__footer task_modal__footer--detail">
 					<div className="text-left button__container">
-						<SecondaryButton text="Edit" icon={ faPencilAlt } handleAcction={ () => handleTaskUpdateModal() }/>
+						<SecondaryButton text="Edit" icon={ faPencilAlt } handleAcction={ handleTaskUpdateModal }/>
 						<SecondaryButton text="Delete" icon={ faTrashAlt } handleAcction={ () => this.onHandleDelete(task.id) } />
 					</div>
 				</Modal.Footer>

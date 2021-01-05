@@ -2,6 +2,7 @@ import React, { Component } 	from 'react'
 import { reduxForm, Field } 	from 'redux-form'
 import PropTypes 							from 'prop-types'
 import { Modal } 							from 'react-bootstrap'
+import { setPropsAsInitial } 	from '../../helpers/setPropsAsInitial'
 
 const validate = values => {
 
@@ -43,20 +44,21 @@ class TaskUpdate extends Component {
 
 	render() {
 
-		const { handleTaskUpdateModal, showTaskUpdateModal, pristine, submitting, task } = this.props;
+		const { handleTaskUpdateModal, showTaskUpdateModal, handleSubmit, pristine, submitting } = this.props;
 
 		return (
 			<Modal show={ showTaskUpdateModal } onHide={ handleTaskUpdateModal } centered>
         <Modal.Header className="task_modal__header">
-          <Modal.Title className="task_modal__title"> Update Task { task.title } </Modal.Title>
+          <Modal.Title className="task_modal__title"> Update Task </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form>
+          <form onSubmit={ handleSubmit }>
 						<Field name="title" component={ this.renderField } type="text" label="Title (Required)" />
 						<Field name="description" component={ this.renderField } type="textarea" label="Description" />
+						<Field name="id" component={ this.renderField } type="hidden" />
 						<div className="button__container">
 							<div className="button button--cancel" onClick={ handleTaskUpdateModal }> Cancel </div>
-							<button className="button button--submit" type="submit" disabled={ pristine || submitting }> Save </button>
+							<button className="button button--submit" type="submit" disabled={ pristine || submitting }> Update </button>
 						</div>
 					</form>
         </Modal.Body>
@@ -70,25 +72,14 @@ class TaskUpdate extends Component {
 TaskUpdate.propTypes = {
 	showTaskUpdateModal: 		PropTypes.bool.isRequired,
 	handleTaskUpdateModal: 	PropTypes.func.isRequired,
+	id: 										PropTypes.number,
+	title: 									PropTypes.string,
+	description: 						PropTypes.string,
+	handleSubmit: 					PropTypes.func.isRequired,
 	pristine: 							PropTypes.bool.isRequired,
-	submitting: 						PropTypes.bool.isRequired,
-	task: 									PropTypes.shape({
-		id: 					PropTypes.number,
-		title: 				PropTypes.string,
-		completed: 		PropTypes.bool,
-		description: 	PropTypes.string,
-		created_at: 	PropTypes.string
-	}).isRequired
+	submitting: 						PropTypes.bool.isRequired
 }
 
-TaskUpdate.defaultProps = {
-	task: {
-		id: 					0,
-		title: 				'',
-		description: 	'',
-		completed: 		false,
-		created_at: 	''
-	}
-}
+const TaskUpdateForm = reduxForm({ form: 'TaskUpdate', validate })(TaskUpdate)
 
-export default reduxForm({ form: 'TaskUpdate', validate })(TaskUpdate)
+export default setPropsAsInitial(TaskUpdateForm)
