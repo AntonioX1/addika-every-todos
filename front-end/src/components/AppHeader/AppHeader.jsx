@@ -1,25 +1,27 @@
-import React from 'react'
-import PropTypes 				    from 'prop-types'
-import { Row, Col }  from 'react-bootstrap'
-//import { Link } 				from 'react-router-dom'
-import DateContainer        from '../DateContainer'
-import TaskButtonCreate     from '../TaskButtonCreate'
+import React              from 'react'
+import PropTypes 				  from 'prop-types'
+import { Row, Col }       from 'react-bootstrap'
+import DateContainer      from '../DateContainer'
+import PrimaryButton      from '../PrimaryButton'
+import { faPlusCircle }   from '@fortawesome/free-solid-svg-icons'
 
-const AppHeader = ({ title, handleModal }) => {
+const AppHeader = ({ title, handleTaskCreateModal }) => {
 
 	return (
     <div className="header">
       <Row>
         
-        <Col sm={ 12 } md={ 8 } lg={ 8 }>
+        <Col sm={ 12 } md={ 5 } lg={ 6 }>
           <h1 className="header__title"> { title } </h1>
         </Col>
         
-        <Col sm={ 12 } md={ 4 } lg={ 4 } className="text-right">
+        <Col sm={ 12 } md={ 7 } lg={ 6 } className="text-right">
           <DateContainer />
           <div className="header__separator"></div>
-          <TaskButtonCreate
-            handleModal={ handleModal }
+          <PrimaryButton
+            text="Add Task"
+            icon={ faPlusCircle }
+            handleAcction={ handleTaskCreateModal }
           />
         </Col>
 
@@ -31,7 +33,7 @@ const AppHeader = ({ title, handleModal }) => {
 }
 
 AppHeader.propTypes = {
-  handleModal:  PropTypes.func.isRequired,
+  handleTaskCreateModal:  PropTypes.func.isRequired,
 	title:        PropTypes.string.isRequired,
 }
 

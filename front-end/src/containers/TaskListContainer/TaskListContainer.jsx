@@ -4,6 +4,7 @@ import { SubmissionError } 		from 'redux-form'
 import PropTypes 							from 'prop-types'
 import AppFrame 							from '../../components/AppFrame'
 import TaskCreate 						from '../../components/TaskCreate'
+import TaskUpdate 						from '../../components/TaskUpdate'
 import TaskTable 							from '../../components/TaskTable'
 import TaskDetail 						from '../../components/TaskDetail'
 import { fetchTasks } 				from '../../redux/actions/fetchTasks'
@@ -17,7 +18,8 @@ class TaskListContainer extends Component {
 		super();
 
 		this.state = 	{
-			showModal: 						false,
+			showTaskCreateModal: 	false,
+			showTaskUpdateModal: 	false,
 			showTaskDetailModal: 	false,
 			task: 								{}
 		};
@@ -56,13 +58,13 @@ class TaskListContainer extends Component {
 
 	onHandleSuccess = () => {
 
-		this.handleModal()
+		this.handleTaskCreateModal()
 
 	}
 
-	handleModal = () => {
+	handleTaskCreateModal = () => {
 
-		this.setState({ showModal: !this.state.showModal });
+		this.setState({ showTaskCreateModal: !this.state.showTaskCreateModal })
 
 	}
 
@@ -72,12 +74,17 @@ class TaskListContainer extends Component {
 
 	}
 
+	handleTaskUpdateModal = () => {
+
+		this.setState({ showTaskUpdateModal: !this.state.showTaskUpdateModal, showTaskDetailModal: false })
+
+	}
+
 	renderBody() {
 
 		return (
 			<TaskTable
 				tasks={ this.props.tasks }
-				onCompleted={ this.onHandleCompleted }
 				handleTaskDetailModal={ this.handleTaskDetailModal }
 			/>
 		)
@@ -90,18 +97,24 @@ class TaskListContainer extends Component {
 			<div>
 				<AppFrame
 					header="Tasks"
-					handleModal={ this.handleModal }
+					handleTaskCreateModal={ this.handleTaskCreateModal }
 					body={ this.renderBody() }
 				/>
 				<TaskCreate
-					showModal={ this.state.showModal }
-					handleModal={ this.handleModal }
+					showTaskCreateModal={ this.state.showTaskCreateModal }
+					handleTaskCreateModal={ this.handleTaskCreateModal }
 					onSubmit={ this.handleSubmit }
 					onSubmitSuccess={ this.onHandleSuccess }
+				/>
+				<TaskUpdate
+					showTaskUpdateModal={ this.state.showTaskUpdateModal }
+					handleTaskUpdateModal={ this.handleTaskUpdateModal }
+					task={ this.state.task }
 				/>
 				<TaskDetail
 					showTaskDetailModal={ this.state.showTaskDetailModal }
 					handleTaskDetailModal={ this.handleTaskDetailModal }
+					handleTaskUpdateModal={ this.handleTaskUpdateModal }
 					task={ this.state.task }
 				/>
 			</div>

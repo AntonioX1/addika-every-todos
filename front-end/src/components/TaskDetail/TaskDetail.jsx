@@ -55,7 +55,7 @@ class TaskDetail extends Component {
 
 	render() {
 
-		const { showTaskDetailModal, handleTaskDetailModal, task } = 	this.props
+		const { showTaskDetailModal, handleTaskDetailModal, handleTaskUpdateModal, task } = 	this.props
 
 		const attributes = {}
 		
@@ -90,7 +90,7 @@ class TaskDetail extends Component {
 				</Modal.Body>
 				<Modal.Footer className="task_modal__footer task_modal__footer--detail">
 					<div className="text-left button__container">
-						<SecondaryButton text="Edit" icon={ faPencilAlt } />
+						<SecondaryButton text="Edit" icon={ faPencilAlt } handleAcction={ () => handleTaskUpdateModal() }/>
 						<SecondaryButton text="Delete" icon={ faTrashAlt } handleAcction={ () => this.onHandleDelete(task.id) } />
 					</div>
 				</Modal.Footer>
@@ -109,9 +109,11 @@ TaskDetail.propTypes = {
 	task: 									PropTypes.shape({
 		id: 					PropTypes.number,
 		title: 				PropTypes.string,
+		completed: 		PropTypes.bool,
 		description: 	PropTypes.string,
 		created_at: 	PropTypes.string
-	}).isRequired
+	}).isRequired,
+	handleTaskUpdateModal: 	PropTypes.func.isRequired
 }
 
 TaskDetail.defaultProps = {
@@ -119,6 +121,7 @@ TaskDetail.defaultProps = {
 		id: 					0,
 		title: 				'',
 		description: 	'',
+		completed: 		false,
 		created_at: 	''
 	}
 }

@@ -13,7 +13,7 @@ const validate = values => {
 
 };
 
-class TaskCreate extends Component {
+class TaskUpdate extends Component {
 
 	renderField = ({ input, meta, type, label, name }) => {
 
@@ -43,19 +43,19 @@ class TaskCreate extends Component {
 
 	render() {
 
-		const { handleTaskCreateModal, showTaskCreateModal, handleSubmit, pristine, submitting } = this.props;
+		const { handleTaskUpdateModal, showTaskUpdateModal, pristine, submitting, task } = this.props;
 
 		return (
-			<Modal show={ showTaskCreateModal } onHide={ handleTaskCreateModal } centered>
+			<Modal show={ showTaskUpdateModal } onHide={ handleTaskUpdateModal } centered>
         <Modal.Header className="task_modal__header">
-          <Modal.Title className="task_modal__title"> New Task </Modal.Title>
+          <Modal.Title className="task_modal__title"> Update Task { task.title } </Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <form onSubmit={ handleSubmit }>
+          <form>
 						<Field name="title" component={ this.renderField } type="text" label="Title (Required)" />
 						<Field name="description" component={ this.renderField } type="textarea" label="Description" />
 						<div className="button__container">
-							<div className="button button--cancel" onClick={ handleTaskCreateModal }> Cancel </div>
+							<div className="button button--cancel" onClick={ handleTaskUpdateModal }> Cancel </div>
 							<button className="button button--submit" type="submit" disabled={ pristine || submitting }> Save </button>
 						</div>
 					</form>
@@ -67,12 +67,28 @@ class TaskCreate extends Component {
 
 }
 
-TaskCreate.propTypes = {
-	showTaskCreateModal: 		PropTypes.bool.isRequired,
-	handleTaskCreateModal: 	PropTypes.func.isRequired,
-	handleSubmit: 					PropTypes.func.isRequired,
+TaskUpdate.propTypes = {
+	showTaskUpdateModal: 		PropTypes.bool.isRequired,
+	handleTaskUpdateModal: 	PropTypes.func.isRequired,
 	pristine: 							PropTypes.bool.isRequired,
-	submitting: 						PropTypes.bool.isRequired
+	submitting: 						PropTypes.bool.isRequired,
+	task: 									PropTypes.shape({
+		id: 					PropTypes.number,
+		title: 				PropTypes.string,
+		completed: 		PropTypes.bool,
+		description: 	PropTypes.string,
+		created_at: 	PropTypes.string
+	}).isRequired
 }
 
-export default reduxForm({ form: 'TaskCreate', validate })(TaskCreate)
+TaskUpdate.defaultProps = {
+	task: {
+		id: 					0,
+		title: 				'',
+		description: 	'',
+		completed: 		false,
+		created_at: 	''
+	}
+}
+
+export default reduxForm({ form: 'TaskUpdate', validate })(TaskUpdate)

@@ -6,7 +6,7 @@ const SecondaryButton = ({ text, icon, handleAcction }) => (
 	<div className="button button--secondary" onClick={ handleAcction }>
 		<FontAwesomeIcon
 			icon={ icon }
-			className="button__icon button__icon--primary"
+			className="button__icon button__icon--primary icon--primary"
 		/>
 		{ text }
 	</div>

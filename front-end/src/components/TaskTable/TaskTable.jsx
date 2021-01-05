@@ -5,9 +5,8 @@ import { FontAwesomeIcon } 	from '@fortawesome/react-fontawesome'
 import { faCheckCircle as faCheckCircleRegular } 	from '@fortawesome/free-regular-svg-icons'
 import { faCheckCircle as faCheckCircleSolid } 		from '@fortawesome/free-solid-svg-icons'
 import { excerpt } 					from '../../helpers/excerpt'
-import './taskTable.css'
 
-const TaskTable = ({ tasks, onCompleted, handleTaskDetailModal }) => {
+const TaskTable = ({ tasks, handleTaskDetailModal }) => {
 
 	return (
 		<table className="table task_table">
@@ -42,7 +41,6 @@ const TaskTable = ({ tasks, onCompleted, handleTaskDetailModal }) => {
 
 TaskTable.propTypes = {
 	tasks: 									PropTypes.array.isRequired,
-	onCompleted: 						PropTypes.func.isRequired,
 	handleTaskDetailModal: 	PropTypes.func.isRequired
 }
 
